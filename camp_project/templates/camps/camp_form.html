@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Camps{% endblock %}
+
+{% block content %}
+<h1>Camps</h1>
+<p class="muted">Shows total registrations and how many are missing a student.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Dates</th>
+      <th>Total registrations</th>
+      <th>Missing students</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for camp in camps %}
+      <tr>
+        <td>{{ camp.name }}</td>
+        <td>{{ camp.start_date }} → {{ camp.end_date }}</td>
+        <td>{{ camp.total_registrations }}</td>
+        <td>{{ camp.missing_students }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No camps yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

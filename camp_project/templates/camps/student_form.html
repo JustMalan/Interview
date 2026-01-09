@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Add student{% endblock %}
+
+{% block content %}
+<h1>Add Student</h1>
+<p class="muted">For {{ reg.parent_name }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn" type="submit">Save student</button>
+</form>
+{% endblock %}

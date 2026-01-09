@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Registration {{ reg.pk }}{% endblock %}
+
+{% block content %}
+<h1>Registration Detail</h1>
+
+<div class="card">
+  <h3>{{ reg.parent_name }}</h3>
+  <div class="muted">{{ reg.email }}</div>
+  <div class="muted">Created: {{ reg.created_at }}</div>
+</div>
+
+<div class="card">
+  <h3>Student</h3>
+  {% if reg.student %}
+    <p>{{ reg.student.first_name }} {{ reg.student.last_name }} (Age {{ reg.student.age }})</p>
+  {% else %}
+    <p class="muted">No student yet.</p>
+    <a class="btn" href="{% url 'camps:registration_add_student' reg.pk %}">Add student</a>
+  {% endif %}
+</div>
+
+<div class="card">
+  <h3>Camp registrations</h3>
+
+  {% if camp_regs %}
+    <ul>
+      {% for cr in camp_regs %}
+        <li>{{ cr.camp.name }} — {{ cr.duration_weeks }} week(s)</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="muted">No camp registrations yet.</p>
+  {% endif %}
+
+  <h4>Add to camp</h4>
+  <form method="post" action="{% url 'camps:registration_add_camp' reg.pk %}">
+    {% csrf_token %}
+    {{ camp_reg_form.as_p }}
+    <button class="btn" type="submit">Add</button>
+  </form>
+</div>
+
+{% endblock %}

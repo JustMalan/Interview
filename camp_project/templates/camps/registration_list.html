@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Registrations{% endblock %}
+
+{% block content %}
+<h1>Parent Registrations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parent</th>
+      <th>Email</th>
+      <th>Student?</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in regs %}
+      <tr>
+        <td><a href="{% url 'camps:registration_detail' r.pk %}">{{ r.parent_name }}</a></td>
+        <td>{{ r.email }}</td>
+        <td>{% if r.student %}Yes{% else %}No{% endif %}</td>
+        <td>{{ r.created_at }}</td>
+      </tr>
+    {% empty %}
+      <tr><td colspan="4">No registrations yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

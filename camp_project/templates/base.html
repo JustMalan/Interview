@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Camp Manager{% endblock %}</title>
+  <style>
+    body { font-family: system-ui, Arial; margin: 24px; }
+    nav a { margin-right: 12px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #f6f6f6; text-align: left; }
+    .muted { color: #666; }
+    .card { border: 1px solid #ddd; padding: 12px; margin: 12px 0; border-radius: 8px; }
+    .btn { display: inline-block; padding: 6px 10px; border: 1px solid #333; border-radius: 6px; text-decoration: none; }
+    .btn + .btn { margin-left: 8px; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="{% url 'camps:camp_list' %}">Camps</a>
+    <a href="{% url 'camps:registration_list' %}">Registrations</a>
+    <a href="{% url 'camps:registration_create' %}">New registration</a>
+    <a href="{% url 'camps:camp_create' %}">New camp</a>
+  </nav>
+
+  <hr>
+
+  {% block content %}{% endblock %}
+</body>
+</html>
